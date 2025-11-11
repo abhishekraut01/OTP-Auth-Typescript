@@ -1,4 +1,4 @@
-class ApiError extends Error {
+export class ApiError extends Error {
     public statusCode: number
     public success: boolean
     public errors: any[]
