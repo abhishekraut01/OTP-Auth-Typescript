@@ -3,7 +3,7 @@ version: '3.9'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: devsync_postgres
+    container_name: devarena_postgres
     restart: unless-stopped
     env_file:
       - .env
@@ -14,7 +14,7 @@ services:
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
       interval: 10s
@@ -23,11 +23,11 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: devsync_redis
+    container_name: devarena_redis
     restart: unless-stopped
     ports:
       - "${REDIS_PORT}:6379"
-    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    command: ["redis-server", "--requirepass", "supersecret", "--save", "", "--appendonly", "no"]
     # 'save' and 'appendonly no' ensures pure in-memory mode for OTPs
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
