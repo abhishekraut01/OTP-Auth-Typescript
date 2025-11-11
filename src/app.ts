@@ -14,8 +14,8 @@ app.use('/api/v1/auth', authRoute);
 // 404 Handler
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({
-    message:"Route Not Found"
-  })
+    message: 'Route Not Found',
+  });
 });
 
 export default app;
