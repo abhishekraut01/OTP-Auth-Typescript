@@ -1,11 +1,16 @@
 import { Request, Response } from 'express';
 import { AsyncHandler } from '../utils/asyncHandler';
-import { signinSchema, signupSchema, VerifyOTPSigninSchema, VerifyOTPSignupSchema } from '../validations/auth.validations';
+import {
+  signinSchema,
+  signupSchema,
+  VerifyOTPSigninSchema,
+  VerifyOTPSignupSchema,
+} from '../validations/auth.validations';
 import { ApiError } from '../utils/apiError';
 import { sendOTP, verifyOTPService } from '../services/email.service';
 import { ApiResponse } from '../utils/apiResponse';
 import { createSession } from '../services/session.service';
-import prisma from '../db/prisma.js'
+import prisma from '../db/prisma.js';
 
 export const handleInitSignup = AsyncHandler(
   async (req: Request, res: Response) => {

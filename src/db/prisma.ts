@@ -9,7 +9,10 @@ class PrismaSingleton {
   public static getInstance(): PrismaClient {
     if (!PrismaSingleton.instance) {
       PrismaSingleton.instance = new PrismaClient({
-        log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+        log:
+          process.env.NODE_ENV === 'development'
+            ? ['query', 'error', 'warn']
+            : ['error'],
       });
     }
     return PrismaSingleton.instance;

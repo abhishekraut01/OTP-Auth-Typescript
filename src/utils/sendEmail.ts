@@ -1,6 +1,6 @@
-import { ENV } from "../config/env";
-import { ApiError } from "./apiError";
-import { resend } from "./resend";
+import { ENV } from '../config/env';
+import { ApiError } from './apiError';
+import { resend } from './resend';
 
 interface SendEmailInput {
   to: string;
@@ -15,7 +15,7 @@ export const sendEmail = async (options: SendEmailInput) => {
   try {
     const emailFrom = from || ENV.EMAIL_FROM;
     if (!emailFrom) {
-      throw new ApiError(500, "EMAIL_FROM environment variable not set");
+      throw new ApiError(500, 'EMAIL_FROM environment variable not set');
     }
 
     const result = await resend.emails.send({
@@ -27,11 +27,11 @@ export const sendEmail = async (options: SendEmailInput) => {
 
     // Handle expected Resend API-level errors
     if (result.error) {
-      console.error("Resend API returned error:", result.error);
+      console.error('Resend API returned error:', result.error);
 
       throw new ApiError(
         result.error.statusCode ?? 502,
-        result.error.message ?? "Failed to send email via Resend"
+        result.error.message ?? 'Failed to send email via Resend'
       );
     }
 
@@ -39,11 +39,12 @@ export const sendEmail = async (options: SendEmailInput) => {
     return result.data;
   } catch (err: any) {
     // Handle network/runtime errors
-    console.error("Resend sendEmail exception:", err);
+    console.error('Resend sendEmail exception:', err);
 
     // fallback to safe status/message extraction
     const status = err?.error?.statusCode || err?.statusCode || 500;
-    const message = err?.error?.message || err?.message || "Internal email service error";
+    const message =
+      err?.error?.message || err?.message || 'Internal email service error';
 
     throw new ApiError(status, message);
   }
