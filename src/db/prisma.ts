@@ -1,5 +1,6 @@
 // src/lib/prisma.ts
 import { PrismaClient } from '@prisma/client';
+import { ENV } from '../config/env';
 
 class PrismaSingleton {
   private static instance: PrismaClient;
@@ -9,7 +10,7 @@ class PrismaSingleton {
   public static getInstance(): PrismaClient {
     if (!PrismaSingleton.instance) {
       PrismaSingleton.instance = new PrismaClient({
-        log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+        log: ENV.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
       });
     }
     return PrismaSingleton.instance;
@@ -22,7 +23,7 @@ const globalForPrisma = globalThis as unknown as {
 
 const prisma = globalForPrisma.prisma ?? PrismaSingleton.getInstance();
 
-if (process.env.NODE_ENV !== 'production') {
+if (ENV.NODE_ENV !== 'production') {
   globalForPrisma.prisma = prisma;
 }
 

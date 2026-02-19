@@ -26,6 +26,9 @@ CREATE TABLE "Sessions" (
 CREATE UNIQUE INDEX "Users_username_key" ON "Users"("username");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Users_email_key" ON "Users"("email");
+
+-- CreateIndex
 CREATE INDEX "Users_email_idx" ON "Users"("email");
 
 -- CreateIndex
