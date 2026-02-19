@@ -19,11 +19,7 @@ export const VerifyOTPSignupSchema = z.object({
 });
 
 export const VerifyOTPSigninSchema = z.object({
-  email: z
-    .email('Invalid email format')
-    .toLowerCase()
-    .trim()
-    .max(255, 'Email too long'),
+  email: z.email('Invalid email format').toLowerCase().trim().max(255, 'Email too long'),
   otp: z
     .string()
     .length(6, 'OTP must be 6 digits')

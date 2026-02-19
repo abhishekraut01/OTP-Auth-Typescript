@@ -9,11 +9,7 @@ interface TokenPayload {
   role?: string;
 }
 
-export const authenticate = (
-  req: Request,
-  _res: Response,
-  next: NextFunction
-) => {
+export const authenticate = (req: Request, _res: Response, next: NextFunction) => {
   try {
     const authHeader = req.headers.authorization;
 

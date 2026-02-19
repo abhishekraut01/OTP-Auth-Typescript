@@ -1,12 +1,7 @@
 import { ApiError } from '../utils/apiError.js';
 import { NextFunction, Request, Response } from 'express';
 
-const errorHandler = (
-  err: Error,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
   // Handle known operational errors
   if (err instanceof ApiError) {
     return res.status(err.statusCode).json({

@@ -16,18 +16,10 @@ class RedisSingleton {
     if (!RedisSingleton.redisInstance) {
       RedisSingleton.redisInstance = new Redis(process.env.REDIS_URL!);
 
-      RedisSingleton.redisInstance.on('connect', () =>
-        console.log('Redis connected')
-      );
-      RedisSingleton.redisInstance.on('ready', () =>
-        console.log('Redis ready')
-      );
-      RedisSingleton.redisInstance.on('error', (err) =>
-        console.error('Redis error', err)
-      );
-      RedisSingleton.redisInstance.on('close', () =>
-        console.log('Redis connection closed')
-      );
+      RedisSingleton.redisInstance.on('connect', () => console.log('Redis connected'));
+      RedisSingleton.redisInstance.on('ready', () => console.log('Redis ready'));
+      RedisSingleton.redisInstance.on('error', (err) => console.error('Redis error', err));
+      RedisSingleton.redisInstance.on('close', () => console.log('Redis connection closed'));
     }
 
     return RedisSingleton.redisInstance;

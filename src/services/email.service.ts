@@ -1,11 +1,7 @@
 import { ENV } from '../config/env';
 import { otpEmailHTML } from '../utils/emailTemplate';
 import { OtpError } from '../utils/otpError';
-import {
-  handleGenerateOtp,
-  handleHashOTP,
-  handleVerifyOTP,
-} from '../utils/otpUtilities';
+import { handleGenerateOtp, handleHashOTP, handleVerifyOTP } from '../utils/otpUtilities';
 import { redis } from '../utils/redis';
 import { sendEmail } from '../utils/sendEmail';
 

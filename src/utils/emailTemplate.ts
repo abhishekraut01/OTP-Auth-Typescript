@@ -12,11 +12,7 @@ export function escapeHTML(s: string): string {
   );
 }
 
-export function otpEmailHTML(
-  otp: string,
-  email: string,
-  validitySeconds = 90
-): string {
+export function otpEmailHTML(otp: string, email: string, validitySeconds = 90): string {
   return `
 <!DOCTYPE html>
 <html lang="en">

@@ -34,9 +34,6 @@ export async function handleVerifyOTP(otp: string, hash: string, salt: string) {
   });
 
   // Use timing-safe comparison
-  const valid = crypto.timingSafeEqual(
-    Buffer.from(testHash, 'hex'),
-    Buffer.from(hash, 'hex')
-  );
+  const valid = crypto.timingSafeEqual(Buffer.from(testHash, 'hex'), Buffer.from(hash, 'hex'));
   return valid;
 }

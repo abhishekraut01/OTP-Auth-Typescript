@@ -43,8 +43,7 @@ export const sendEmail = async (options: SendEmailInput) => {
 
     // fallback to safe status/message extraction
     const status = err?.error?.statusCode || err?.statusCode || 500;
-    const message =
-      err?.error?.message || err?.message || 'Internal email service error';
+    const message = err?.error?.message || err?.message || 'Internal email service error';
 
     throw new ApiError(status, message);
   }
